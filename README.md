@@ -18,6 +18,7 @@ Baldness Detector is a playful computer vision project that uses deep learning a
 
 ### The Problem (that doesn't exist)
 In a world overflowing with existential crises, climate change, and AI ethics, one issue has somehow slipped through the cracks: spontaneous baldness awareness. Millions walk the streets unaware of their follicular fate. Is that a receding hairline or just bad lighting? Is your crown thinning or is it just the wind? Society has failed to provide real-time, pixel-perfect answers.
+
 No one asked, but we saw the void. And we filled it with scalp segmentation.
 
 ### The Solution (that nobody asked for)
@@ -44,6 +45,13 @@ python main.py
 ### Project Documentation
 For Software: # 🧠 Baldness Detector
 ## 🚀 How to Run
+
+# Screenshots
+<img width="1153" height="784" alt="Screenshot 2025-08-09 175632" src="https://github.com/user-attachments/assets/429a1694-856d-4506-9dfa-64bc1274cefd" />
+<img width="697" height="755" alt="Screenshot 2025-08-09 174905" src="https://github.com/user-attachments/assets/18ae0a11-0623-45d6-9a2d-7c794709fd29" />
+
+# Video Documentation
+https://github.com/user-attachments/assets/4f53ceb2-c19b-4515-b2fb-de921c6fc086
 
 1. **Clone the repository**
    ```bash
