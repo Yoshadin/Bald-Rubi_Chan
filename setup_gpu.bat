@@ -15,7 +15,7 @@ if %errorlevel% equ 0 (
     nvidia-smi --query-gpu=index,name,driver_version --format=csv,noheader
     set HAS_NVIDIA=1
 ) else (
-    echo ○ No NVIDIA GPU detected
+    echo o No NVIDIA GPU detected
     set HAS_NVIDIA=0
 )
 echo.
@@ -23,10 +23,10 @@ echo.
 REM ===== STEP 2: Check for Intel Arc GPU =====
 echo [2/4] Checking for Intel Arc GPU...
 if exist "C:\Program Files (x86)\Intel\oneAPI" (
-    echo ✓ Intel oneAPI detected (Intel Arc GPU support available)
+    echo ✓ Intel oneAPI detected
     set HAS_INTEL_ARC=1
 ) else (
-    echo ○ Intel oneAPI not detected
+    echo o Intel oneAPI not detected
     set HAS_INTEL_ARC=0
 )
 echo.
@@ -38,10 +38,10 @@ echo ================================
 echo.
 
 if %HAS_NVIDIA% equ 1 (
-    echo 1) NVIDIA GPU (CUDA^)
+    echo 1) NVIDIA GPU - CUDA
 )
 if %HAS_INTEL_ARC% equ 1 (
-    echo 2) Intel Arc GPU (oneAPI^)
+    echo 2) Intel Arc GPU - oneAPI
 )
 echo 3) Intel Integrated Graphics / CPU with OpenCL
 echo 4) CPU Only
@@ -60,7 +60,7 @@ if "%CHOICE%"=="1" (
         pause
         exit /b 1
     )
-    echo Installing for NVIDIA GPU (CUDA 11.8^)...
+    echo Installing for NVIDIA GPU (CUDA 11.8)...
     python -m pip install --upgrade pip
     pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
     set ACCELERATOR=NVIDIA GPU
@@ -106,29 +106,11 @@ echo Verifying Installation
 echo ================================
 echo.
 
-python -c "^
-import torch^
-import cv2^
-print('✓ PyTorch version:', torch.__version__)^
-print('✓ OpenCV version:', cv2.__version__)^
-if torch.cuda.is_available():^
-    print('✓ NVIDIA CUDA available:', torch.version.cuda)^
-    print('✓ GPU 0:', torch.cuda.get_device_name(0))^
-try:^
-    import intel_extension_for_pytorch as ipex^
-    if torch.xpu.is_available():^
-        print('✓ Intel Arc GPU available')^
-except:^
-    pass^
-if cv2.ocl.haveOpenCL():^
-    print('✓ OpenCL available (Intel iGPU)')^
-print()^
-print('✓ Setup complete!')^
-"
+python -c "import torch; import cv2; print('PyTorch version:', torch.__version__); print('OpenCV version:', cv2.__version__); print('CUDA available:', torch.cuda.is_available()); print('Setup complete!')"
 
 echo.
 echo ================================
-echo Next Steps
+echo Setup Complete!
 echo ================================
 echo.
 echo Run the optimized baldness detector:
@@ -137,9 +119,6 @@ echo.
 echo Monitor GPU usage:
 if %HAS_NVIDIA% equ 1 (
     echo   NVIDIA: nvidia-smi -l 1
-)
-if %HAS_INTEL_ARC% equ 1 (
-    echo   Intel Arc: call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
 )
 echo.
 pause
