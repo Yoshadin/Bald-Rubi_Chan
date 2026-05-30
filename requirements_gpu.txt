@@ -1,0 +1,38 @@
+# GPU/Accelerator Requirements for Baldness Detector
+# Install with: pip install -r requirements_gpu.txt
+
+# Core Dependencies
+opencv-python>=4.8.0
+mediapipe>=0.10.0
+numpy>=1.24.0
+
+# PyTorch (CPU base - accelerators added separately)
+# Choose ONE of the following based on your hardware:
+
+# ===== NVIDIA GPU (CUDA) =====
+# For CUDA 11.8:
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# For CUDA 12.1:
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+# ===== Intel Arc GPU (oneAPI) =====
+# 1. Install Intel oneAPI Base Toolkit (from Intel website)
+# 2. pip install intel-extension-for-pytorch
+# 3. pip install torch torchvision torchaudio (CPU version)
+
+# ===== Intel Integrated Graphics (iGPU) =====
+# pip install torch torchvision torchaudio
+# (OpenCV handles GPU acceleration automatically)
+
+# ===== CPU Only =====
+# pip install torch torchvision torchaudio
+
+# Optional dependencies for enhanced features
+tensorboard>=2.14.0       # For training monitoring
+tqdm>=4.66.0              # Progress bars
+intel-extension-for-pytorch>=1.13.0  # Optional: Intel GPU support
+
+# Development dependencies
+black>=23.0.0             # Code formatting
+pylint>=2.17.0            # Code linting
